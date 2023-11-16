@@ -1,12 +1,14 @@
 fun main() {
     val gen = genNumber()
     println(gen)
-    var user: List<Int>?
+    var user: List<Int>
     var res: Pair<Int, Int>
     do {
         user = getInput()
-        res = check(gen, user!!)
-        println("Ваш результат: Быки ${res.first} Коровы ${res.second}")
+        res = check(gen, user)
+        println("Ваш результат:\nБыки: ${res.first}\nКоровы: ${res.second}")
+        if (res.first < 4) println("Попробуйте еще раз")
+        else println("Вы победили")
     }
     while (res.first < 4)
 }
@@ -15,17 +17,17 @@ fun genNumber(): List<Int> {
     val numbers = (0..9).toMutableList()
     val num = mutableListOf<Int>()
     repeat(4) {
-        val index = (0 until numbers.size).random()
+        val index = (0..<numbers.size).random()
         num += numbers[index]
         numbers.removeAt(index)
     }
     return num
 }
 
-fun getInput(): List<Int>? {
-    var input = ""
+fun getInput(): List<Int> {
+    var input: String
     do {
-        println("Введите последовательность из четырех цифр (уникальных)")
+        println("Введите последовательность из четырех уникальных цифр")
         input = readln()
     }
     while (input.length < 4)
