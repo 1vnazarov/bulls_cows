@@ -53,15 +53,10 @@ fun getInput(): List<Int> {
 fun check(gen: List<Int>, user: List<Int>): Pair<Int, Int> {
     var cows = 0
     var bulls = 0
-    val guessed = mutableSetOf<Int>()
     for (i in gen.indices) {
-        if (gen[i] == user[i]) bulls++
-        else guessed.add(gen[i])
-    }
-    for (i in guessed.indices) {
-        if (gen[i] != user[i] && user[i] in guessed) {
-            cows++
-            guessed.remove(gen[i])
+        if (user[i] in gen) {
+            if (gen[i] == user[i]) bulls++
+            else cows++
         }
     }
     return Pair(bulls, cows)
