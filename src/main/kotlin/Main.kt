@@ -1,3 +1,4 @@
+// Игра с интерфейсом: https://github.com/1vnazarov/BullsAndCows
 fun main() {
     val gen = genNumber()
     println(gen)
